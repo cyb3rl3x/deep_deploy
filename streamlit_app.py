@@ -16,20 +16,15 @@ def load_and_prep_image(image, img_shape=224):
     # Converta a imagem para RGB, se necessário
     if image.mode != 'RGB':
         image = image.convert('RGB')
+        print('IMAGEM EM MODO RGB')
     
-    # Converta a imagem para um array numpy
-    image = np.array(image)
+    # Redimensione a imagem
+    image = image.resize((img_shape, img_shape))
     
-    # Adicione uma dimensão extra se necessário (grayscale para RGB)
-    if len(image.shape) == 2:
-        image = np.expand_dims(image, axis=-1)
-        image = np.concatenate([image, image, image], axis=-1)
+    # Converta a imagem para um array numpy e normalize
+    image = np.array(image) / 255.0
     
-    # Redimensionar a imagem usando ImageDataGenerator
-    image = datagen.apply_transform(image, {'tx': 0, 'ty': 0, 'theta': 0, 'shear': 0, 'zx': 1, 'zy': 1, 'flip_horizontal': False, 'flip_vertical': False})
-    image = datagen.standardize(image)
-    
-    # Adicionar a dimensão do batch
+    # Adicione a dimensão do batch
     image = np.expand_dims(image, axis=0)
     
     return image
