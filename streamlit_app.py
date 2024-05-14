@@ -54,6 +54,6 @@ if uploaded_file is not None:
 
     if prediction[0] > 0.5:
 
-        st.write(f"O modelo prevê que o paciente tem pneumonia com probabilidade de {prediction[0]} ")
+        st.write(f"O modelo prevê que o paciente tem pneumonia com probabilidade de {proba_pneumonia} ")
     else:
-        st.write("O modelo prevê que o paciente não tem pneumonia.")
+        st.write(f"O modelo prevê que o paciente não tem pneumonia com probabilidade de {proba_saudavel}.")
