@@ -5,7 +5,7 @@ import numpy as np
 
 # Carregar o modelo pré-treinado
 model = tf.keras.models.load_model('model.h5')
-
+datagen = ImageDataGenerator(rescale=1./255)
 def load_and_prep_image(image, img_shape=224):
     # Certifique-se de que a imagem está em formato Pillow Image
     if isinstance(image, np.ndarray):
