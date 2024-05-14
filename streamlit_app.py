@@ -9,7 +9,24 @@ model = tf.keras.models.load_model('model.h5')
 # Função para carregar e pré-processar a imagem
 def load_and_prep_image(image, img_shape=224):
     image = np.array(image)
-    image = tf.image.resize(image, [img_shape, img_shape])
+
+    # Converta a imagem para RGB, se necessário
+    if image.mode != 'RGB':
+        image = image.convert('RGB')
+    
+    # Converta a imagem para um array numpy
+    image = np.array(image)
+    
+    # Adicione uma dimensão extra se necessário
+    if len(image.shape) == 2:
+        image = np.expand_dims(image, axis=-1)
+        image = np.concatenate([image, image, image], axis=-1)
+    
+    # Verifique se a imagem tem 3 dimensões (altura, largura, canais)
+    if len(image.shape) == 3:
+        image = np.expand_dims(image, axis=0)
+
+    image = tf.image.resize(image, [img_shape, img_shape, 3])
     image = image / 255.0  # Normalizar a imagem
     return image
 
