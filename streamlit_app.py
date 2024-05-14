@@ -21,7 +21,7 @@ def load_and_prep_image(image, img_shape=224):
     
     # Redimensione a imagem
     image = image.resize((img_shape, img_shape))
-    print('SHAPE DA IMAGEM DEPOIS DO RESIZE', image.shape)
+    #print('SHAPE DA IMAGEM DEPOIS DO RESIZE', image.shape)
     # Converta a imagem para um array numpy e normalize
     image = np.array(image) / 255.0
     
