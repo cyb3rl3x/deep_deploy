@@ -21,13 +21,14 @@ def load_and_prep_image(image, img_shape=224):
     
     # Redimensione a imagem
     image = image.resize((img_shape, img_shape))
-    
+    print('SHAPE DA IMAGEM DEPOIS DO RESIZE', image.shape)
     # Converta a imagem para um array numpy e normalize
     image = np.array(image) / 255.0
     
     # Adicione a dimensão do batch
     image = np.expand_dims(image, axis=0)
-    
+    print('SHAPE DA IMAGEM COM BATCH', image.shape)
+
     return image
 
 # Configurar a interface do usuário
