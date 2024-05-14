@@ -8,8 +8,10 @@ model = tf.keras.models.load_model('model.h5')
 
 # Função para carregar e pré-processar a imagem
 def load_and_prep_image(image, img_shape=224):
-    image = np.array(image)
-
+    # Certifique-se de que a imagem está em formato Pillow Image
+    if isinstance(image, np.ndarray):
+        image = Image.fromarray(image)
+    
     # Converta a imagem para RGB, se necessário
     if image.mode != 'RGB':
         image = image.convert('RGB')
