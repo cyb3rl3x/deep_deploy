@@ -1,0 +1,10 @@
+# Ignore tudo
+*
+
+# Exceto estes arquivos
+!.gitignore
+!app.py
+!requirements.txt
+!model.h5
+
+
