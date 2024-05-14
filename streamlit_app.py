@@ -49,7 +49,11 @@ if uploaded_file is not None:
 
     prediction = model.predict(img)
     
+    proba_pneumonia = abs(prediction[0]-0.5)*2
+    proba_saudavel  = abs(prediction[0])*2    
+
     if prediction[0] > 0.5:
-        st.write("O modelo prevê que o paciente tem pneumonia.")
+
+        st.write(f"O modelo prevê que o paciente tem pneumonia com probabilidade de {prediction[0]} ")
     else:
         st.write("O modelo prevê que o paciente não tem pneumonia.")
