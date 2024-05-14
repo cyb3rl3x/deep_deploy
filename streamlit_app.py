@@ -12,6 +12,7 @@ def load_and_prep_image(image, img_shape=224):
     # Certifique-se de que a imagem está em formato Pillow Image
     if isinstance(image, np.ndarray):
         image = Image.fromarray(image)
+        print('IMAGEM EM MODO ARRAY')
     
     # Converta a imagem para RGB, se necessário
     if image.mode != 'RGB':
