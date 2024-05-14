@@ -23,11 +23,12 @@ def load_and_prep_image(image, img_shape=224):
         image = np.expand_dims(image, axis=-1)
         image = np.concatenate([image, image, image], axis=-1)
     
-    # Converta a imagem para um tensor e adicione a dimensão do batch
-    image = tf.convert_to_tensor(image, dtype=tf.float32)
-    image = tf.image.resize(image, [img_shape, img_shape])
-    image = image / 255.0  # Normalizar a imagem
-    image = tf.expand_dims(image, axis=0)  # Adicionar batch dimension
+    # Redimensionar a imagem usando ImageDataGenerator
+    image = datagen.apply_transform(image, {'tx': 0, 'ty': 0, 'theta': 0, 'shear': 0, 'zx': 1, 'zy': 1, 'flip_horizontal': False, 'flip_vertical': False})
+    image = datagen.standardize(image)
+    
+    # Adicionar a dimensão do batch
+    image = np.expand_dims(image, axis=0)
     
     return image
 
