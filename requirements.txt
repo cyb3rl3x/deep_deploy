@@ -1,6 +1,4 @@
 streamlit
 tensorflow
 Pillow
-kaggle
 scikit-learn
-shutil
