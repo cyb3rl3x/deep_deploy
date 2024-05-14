@@ -28,7 +28,7 @@ def load_and_prep_image(image, img_shape=224):
     if len(image.shape) == 3:
         image = np.expand_dims(image, axis=0)
 
-    image = tf.image.resize(image, [img_shape, img_shape, 3])
+    image = tf.image.resize(image, [img_shape, img_shape])
     image = image / 255.0  # Normalizar a imagem
     return image
 
