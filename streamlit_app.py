@@ -2,6 +2,8 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 import numpy as np
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
 
 # Carregar o modelo pré-treinado
 model = tf.keras.models.load_model('model.h5')
